@@ -30,7 +30,7 @@ const createChatRoom = async (participantId: number): Promise<void> => {
     // 새로운 채팅방을 생성합니다.
     const chatRoomData = { /* 채팅방 데이터 설정 */ };
 
-    const res = await fetch('http://localhost:8081/api/chatRoom/save', {
+    const res = await fetch('http://localhost:8080/api/chatRoom/save', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -46,7 +46,7 @@ const createChatRoom = async (participantId: number): Promise<void> => {
     const chatRoom = await res.json();
     const participantData = { chatRoomId: chatRoom.id, userId: participantId };
 
-    const participantRes = await fetch('http://localhost:8081/api/participants', {
+    const participantRes = await fetch('http://localhost:8080/api/participants', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

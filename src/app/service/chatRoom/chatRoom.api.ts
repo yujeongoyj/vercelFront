@@ -6,7 +6,7 @@ import {customFetch} from "@/app/service/user/fetchClient";
 export async function insertChatRoom(chatRoom: ChatRoomModel): Promise<any | { status: number }> {
   try {
     // customFetch 사용
-    const response = await customFetch('http://localhost:8081/api/chatRoom/save', {
+    const response = await customFetch('http://localhost:8080/api/chatRoom/save', {
       method: 'POST',
       body: JSON.stringify(chatRoom)
     });

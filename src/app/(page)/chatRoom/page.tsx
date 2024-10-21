@@ -103,7 +103,7 @@ export default function Home1() {
       .catch((error) => console.error(error));
 
     // 메시지 스트리밍 구독
-    const eventSource = new EventSource(`http://localhost:8081/api/chats/${selectedChatRoomId}`);
+    const eventSource = new EventSource(`http://localhost:8080/api/chats/${selectedChatRoomId}`);
 
     eventSource.onmessage = async (event) => {
       const newMessage = JSON.parse(event.data);

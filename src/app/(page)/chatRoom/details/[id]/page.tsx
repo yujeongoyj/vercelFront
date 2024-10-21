@@ -30,14 +30,14 @@ export default function ChatRoom({ params }: { params: { id: string } }) {
 
   useEffect(() => {
     // 채팅방 정보 및 참가자 목록 가져오기
-    fetch(`http://localhost:8081/api/chatRoom/${chatRoomId}`)
+    fetch(`http://localhost:8080/api/chatRoom/${chatRoomId}`)
       .then(response => response.json())
       .then((data: ChatRoomModel) => {
         setChatRoom(data);
       })
       .catch(error => console.error("채팅방 정보를 가져오는 중 오류 발생:", error));
 
-    const eventSource = new EventSource(`http://localhost:8081/api/chats/${chatRoomId}`);
+    const eventSource = new EventSource(`http://localhost:8080/api/chats/${chatRoomId}`);
 
     eventSource.onmessage = (event) => {
       const data: Chat = JSON.parse(event.data);
@@ -64,7 +64,7 @@ export default function ChatRoom({ params }: { params: { id: string } }) {
     };
 
     try {
-      const response = await fetch(`http://localhost:8081/api/chats/${chatRoomId}`, {
+      const response = await fetch(`http://localhost:8080/api/chats/${chatRoomId}`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -90,7 +90,7 @@ export default function ChatRoom({ params }: { params: { id: string } }) {
     formData.append("file", file);               
 
     try {
-      const response = await fetch(`http://localhost:8081/api/chats/${chatRoomId}/upload`, {
+      const response = await fetch(`http://localhost:8080/api/chats/${chatRoomId}/upload`, {
         method: "POST",
         body: formData,
       });

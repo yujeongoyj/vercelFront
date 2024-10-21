@@ -25,14 +25,14 @@ export default function Home1() {
     setLoading(true); // 로딩 상태 시작
 
     try {
-      const response = await fetch(`http://localhost:8081/api/chatRoom/findAll`);
+      const response = await fetch(`http://localhost:8080/api/chatRoom/findAll`);
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
       const data = await response.json();
       setChatRooms(data);
 
-      const totalCountResponse = await fetch('http://localhost:8081/api/chatRoom/count');
+      const totalCountResponse = await fetch('http://localhost:8080/api/chatRoom/count');
       const totalCount = await totalCountResponse.json();
       setTotalPages(Math.ceil(totalCount / 10));
     } catch (error) {
@@ -45,7 +45,7 @@ export default function Home1() {
 
   // 페이지 네이션 적용
   // const fetchChannels = () => {
-  //   fetch('http://localhost:8081/api/channels/findAllPerPage/1')
+  //   fetch('http://localhost:8080/api/channels/findAllPerPage/1')
   //     .then((response) => {
   //       if (!response.ok) {
   //         throw new Error('Network response was not ok');
@@ -81,7 +81,7 @@ export default function Home1() {
     }
     if (window.confirm("선택한 게시글을 삭제하시겠습니까?")) {
         Promise.all(selectChatRooms.map((id: any) =>
-            fetch(`http://localhost:8081/api/chatRoom/deleteById/${id}`, { method: 'DELETE' })
+            fetch(`http://localhost:8080/api/chatRoom/deleteById/${id}`, { method: 'DELETE' })
         ))
         .then(() => {
             alert("게시글이 삭제되었습니다.");
@@ -99,7 +99,7 @@ export default function Home1() {
 
   const handleCrawling = async () => {
     try {
-      const response = await fetch(`http://localhost:8081/api/chatRoom/crawling`, { method: 'GET' });
+      const response = await fetch(`http://localhost:8080/api/chatRoom/crawling`, { method: 'GET' });
       if (response.ok) {
         const data = await response.json();
         if (data.length > 0) {
